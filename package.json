@@ -1,0 +1,26 @@
+{
+  "name": "speakedge-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd client && npm start",
+    "backend": "cd server && npm start",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohasin9999/speakedge-ai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mohasin9999/speakedge-ai/issues"
+  },
+  "homepage": "https://github.com/Mohasin9999/speakedge-ai#readme",
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
