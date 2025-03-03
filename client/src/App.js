@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import PricingPage from "./pages/PricingPage";
 import AboutUsPage from './pages/AboutUsPage';
 import Speak from "./pages/Speak";
+import RadarChart from './pages/RadarChart'; 
 
 function App() {
   const userPhoto = null; // Placeholder, replace with real user photo URL if logged in
@@ -27,6 +28,7 @@ function App() {
             <Route path="/PricingPage" element={<PricingPage />} />
             <Route path="/AboutUsPage" element={<AboutUsPage />} />
             <Route path="/speak" element={<Speak />} />
+            <Route path="/RadarChart" element={<RadarChart />} />
           </Routes>
         </div>
         

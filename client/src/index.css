@@ -9,3 +9,10 @@ body {
 h1, h2, h3, .handwritten-text {
     @apply font-dancingScript;
   }
+  .recharts-polar-grid-angle line {
+    @apply stroke-gray-200;
+  }
+  
+  .recharts-polar-angle-axis-tick-value {
+    @apply text-sm font-medium text-gray-600;
+  }
