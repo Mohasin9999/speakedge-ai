@@ -11,7 +11,9 @@ const Header = ({ userPhoto, isLoggedIn }) => {
         <nav className="flex space-x-8 text-lg"> {/* Text Size for Navigation Links */}
           <Link to="/" className="text-accent hover:text-secondary transition duration-300">Home</Link>
           <Link to="/PricingPage" className="text-accent hover:text-secondary transition duration-300">Pricing</Link>
+          <Link to="/RadarChart" className="text-accent hover:text-secondary transition duration-300"> Status</Link>
           <Link to="/contact" className="text-accent hover:text-secondary transition duration-300">Contact Us</Link>
+
         </nav>
       </div>
 
