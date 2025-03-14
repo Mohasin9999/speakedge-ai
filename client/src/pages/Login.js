@@ -1,32 +1,63 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'; 
+import { Link, useNavigate } from 'react-router-dom';  // Use 'useNavigate' instead of 'useHistory'
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();  // Initialize useNavigate hook
 
-  // Basic form submission handler (could be expanded with validation)
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login functionality (e.g., API call for authentication)
-    console.log('Logging in with:', { email, password });
+    setError(null);
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+  
+      // Debugging: Check the response data
+      console.log("Login response:", data);
+  
+      if (!data.user) {
+        throw new Error("User data missing from response");
+      }
+  
+      // ✅ Store JWT token and user details
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+  
+      // Redirect to home page
+      navigate("/");
+      window.location.reload(); 
+    } catch (err) {
+      console.error("Login error:", err.message);
+      setError(err.message);
+    }
   };
+  
+  
 
   return (
     <div>
-      {/* Header */}
-
-      {/* Login Form */}
       <div className="min-h-screen bg-white flex justify-center items-center">
         <div className="w-full max-w-sm bg-white p-8 rounded-lg shadow-lg">
-          {/* Title */}
           <h1 className="text-center text-4xl font-bold text-accent mb-6" style={{ fontFamily: 'Dancing Script, cursive' }}>
             Login
           </h1>
 
-          {/* Login Form */}
+          {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Email Input */}
             <div>
               <label htmlFor="email" className="block text-accent text-lg font-medium mb-2">Email</label>
               <input
@@ -39,7 +70,6 @@ const Login = () => {
               />
             </div>
 
-            {/* Password Input */}
             <div>
               <label htmlFor="password" className="block text-accent text-lg font-medium mb-2">Password</label>
               <input
@@ -52,7 +82,6 @@ const Login = () => {
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="w-full py-2 mt-4 text-white bg-primary rounded-lg hover:bg-secondary transition duration-300"
@@ -61,7 +90,6 @@ const Login = () => {
             </button>
           </form>
 
-          {/* Sign Up and Forgot Password Links */}
           <div className="mt-6 text-center">
             <p className="text-sm text-accent">
               Don't have an account?{' '}

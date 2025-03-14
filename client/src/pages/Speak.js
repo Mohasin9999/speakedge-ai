@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import { ReactMic } from 'react-mic';
-import { FaMicrophone, FaStop } from 'react-icons/fa';
+import React, { useState } from "react";
+import { FaMicrophone, FaStop } from "react-icons/fa";
+import { useReactMediaRecorder } from "react-media-recorder";
 
 const Speak = () => {
-  const [recording, setRecording] = useState(false);
-  const [blobURL, setBlobURL] = useState(null);
   const [timer, setTimer] = useState(0);
   const [intervalId, setIntervalId] = useState(null);
+  const { startRecording, stopRecording, mediaBlobUrl, status, mediaBlob } =
+    useReactMediaRecorder({
+      audio: true,
+      blobPropertyBag: { type: "audio/wav" },
+    });
 
-  const startRecording = () => {
-    setRecording(true);
-    setBlobURL(null);
+  const handleStart = () => {
+    startRecording();
     let count = 0;
     const id = setInterval(() => {
       count += 1;
@@ -19,57 +21,84 @@ const Speak = () => {
     setIntervalId(id);
   };
 
-  const stopRecording = () => {
-    setRecording(false);
+  const handleStop = () => {
+    stopRecording();
     clearInterval(intervalId);
     setTimer(0);
   };
 
-  const onData = () => {
-    // You can use this function to process audio data in real time
-  };
+  const handleUpload = async () => {
+    if (!mediaBlob) return;
 
-  const onStop = (recordedBlob) => {
-    setBlobURL(recordedBlob.blobURL);
-    const link = document.createElement('a');
-    link.href = recordedBlob.blobURL;
-    link.download = `recording-${Date.now()}.wav`;
-    link.click();
+    const formData = new FormData();
+    formData.append("audio", mediaBlob, `audio-${Date.now()}.wav`);
+    formData.append("userId", "USER_ID"); 
+
+    try {
+      const response = await fetch("/api/upload-audio", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      if (data.message === "File uploaded successfully") {
+        alert("File uploaded successfully");
+      } else {
+        alert("Failed to upload file");
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert("Error uploading file");
+    }
   };
 
   return (
     <div className="min-h-screen bg-white text-center font-sans flex flex-col items-center justify-center p-6">
-      {/* Topic Section */}
-      <h1 className="text-3xl font-bold text-accent mb-4 font-dancingScript">Today's Topic: AI in Communication</h1>
-      
+      <h1 className="text-3xl font-bold text-accent mb-4 font-dancingScript">
+        Today's Topic: AI in Communication
+      </h1>
+
       {/* Voice Graph & Timer */}
       <div className="w-full max-w-md bg-fade p-6 rounded-lg shadow-lg mb-6 flex flex-col items-center">
-        <ReactMic
-          record={recording}
-          className="w-full"
-          onStop={onStop}
-          onData={onData}
-          strokeColor="#3FA6A6"
-          backgroundColor="#F2F2F2"
-        />
-        <p className="text-lg text-gray-700 mt-4">Recording Time: {timer} sec</p>
+        <p className="text-lg text-gray-700 mt-4">
+          Recording Status: {status}
+        </p>
+        <p className="text-lg text-gray-700 mt-2">Recording Time: {timer} sec</p>
       </div>
 
       {/* Mic Button */}
       <button
-        className={`w-16 h-16 flex items-center justify-center rounded-full shadow-lg transition duration-300 ${recording ? 'bg-red-500' : 'bg-primary'} hover:bg-secondary`}
-        onClick={recording ? stopRecording : startRecording}
+        className={`w-16 h-16 flex items-center justify-center rounded-full shadow-lg transition duration-300 ${
+          status === "recording" ? "bg-red-500" : "bg-primary"
+        } hover:bg-secondary`}
+        onClick={status === "recording" ? handleStop : handleStart}
       >
-        {recording ? <FaStop className="text-white text-2xl" /> : <FaMicrophone className="text-white text-2xl" />}
+        {status === "recording" ? (
+          <FaStop className="text-white text-2xl" />
+        ) : (
+          <FaMicrophone className="text-white text-2xl" />
+        )}
       </button>
 
       {/* Playback */}
-      {blobURL && (
+      {mediaBlobUrl && (
         <div className="mt-6">
           <p className="text-lg text-gray-700">Your Recording:</p>
           <audio controls className="mt-2">
-            <source src={blobURL} type="audio/wav" />
+            <source src={mediaBlobUrl} type="audio/wav" />
           </audio>
+          <a href={mediaBlobUrl} download={`recording-${Date.now()}.wav`}>
+            <button className="mt-4 px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary">
+              Download Recording
+            </button>
+          </a>
+
+          {/* Upload Button */}
+          <button
+            onClick={handleUpload}
+            className="mt-4 px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary"
+          >
+            Upload Recording
+          </button>
         </div>
       )}
     </div>
