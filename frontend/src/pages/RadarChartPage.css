@@ -1,0 +1,107 @@
+/* src/pages/RadarChartPage.css (Simplified) */
+
+.radar-chart-page {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center children horizontally */
+  min-height: calc(100vh - 80px); /* Full height minus header */
+  padding: 40px 20px;
+  background-color: #f9fafb; /* Light gray background */
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2563eb; /* Blue-600 */
+}
+
+.chart-container {
+  background-color: #ffffff; /* White background for the chart box */
+  max-width: 768px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px; /* Add space below the container */
+}
+
+/* --- CRITICAL FOR RECHARTS --- */
+.chart-area {
+  height: 400px; /* Explicit height */
+  width: 100%;  /* Explicit width */
+  margin-bottom: 20px; /* Space below the chart */
+}
+/* ----------------------------- */
+
+
+.controls-area {
+  text-align: center;
+  width: 100%; /* Ensure it takes width */
+  padding: 15px 0; /* Add some padding */
+}
+
+.controls-area p {
+  color: #6b7280; /* gray-500 */
+  margin-bottom: 15px;
+}
+
+.refresh-button {
+  margin-top: 1rem;
+  padding: 10px 24px;
+  background-color: #2563eb; /* Blue-600 */
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.refresh-button:hover {
+  background-color: #1d4ed8; /* Blue-700 */
+}
+
+.scores-grid {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* More flexible grid */
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px; /* Limit width of score grid */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.score-item {
+  padding: 12px;
+  background-color: #eff6ff; /* blue-50 */
+  border-radius: 8px;
+  text-align: center;
+}
+
+.score-subject {
+  font-weight: 600;
+  color: #1e40af; /* blue-800 */
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  word-wrap: break-word;
+}
+
+.score-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2563eb; /* Blue-600 */
+  line-height: 1.2;
+}
+
+/* Make recharts text visible */
+.recharts-text {
+  font-family: system-ui, sans-serif !important; /* Force a common font */
+}

@@ -1,0 +1,158 @@
+/* src/components/Header.css */
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
+    height: 80px;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .header-logo-link {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .header-link {
+    text-decoration: none;
+    /* --- MODIFICATION: Set link color to black --- */
+    color: #333333; /* Using dark grey instead of pure black for readability */
+    /* color: black; */ /* Alternative: Use pure black if preferred */
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .header-link:hover {
+    background-color: #f0f0f0; /* Keep background hover effect */
+    /* --- MODIFICATION: Ensure hover color remains black/dark grey --- */
+    color: #333333; /* Or 'black' */
+    /* Remove this if you want the default purple hover: color: var(--hp-secondary-color, #7c3aed); */
+  }
+
+  /* Styles for the right side (Login/Profile) */
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-login-link,
+  .header-profile-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+     /* --- MODIFICATION: Set base text color to greyish for the link container itself --- */
+    color: var(--hp-text-medium, #666); /* Example: Keep container text grey */
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease;
+  }
+
+  .header-login-link:hover,
+  .header-profile-link:hover {
+    background-color: #f0f0f0;
+  }
+
+  .header-login-icon {
+    font-size: 1.2rem;
+     /* --- MODIFICATION: Ensure icon color is black (or keep theme color if desired) --- */
+     color: black; /* Set icon to black */
+    /* color: var(--hp-primary-color, #8b5cf6); */ /* Original theme color */
+  }
+
+  .header-login-text,
+  .header-username {
+    font-size: 1rem;
+    font-weight: 500;
+    /* --- MODIFICATION: Set login/username text color to black --- */
+    color: #333333; /* Dark grey */
+    /* color: black; */ /* Pure black */
+    /* color: var(--hp-text-dark, #333); */ /* Original */
+  }
+
+  /* Profile Specific Styles */
+  .header-user-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+  }
+
+  .header-avatar-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    /* --- MODIFICATION: Change border color to black or grey if desired --- */
+    border: 2px solid #cccccc; /* Example: Light grey border */
+    /* border: 2px solid black; */ /* Example: Black border */
+    /* border: 2px solid var(--hp-primary-color, #8b5cf6); */ /* Original */
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .header-avatar-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #eee;
+  }
+
+  .header-avatar-icon {
+    font-size: 1.4rem;
+    color: var(--hp-text-medium, #888); /* Keep fallback icon grey */
+  }
+
+  /* Optional Logout Button Style */
+  /* ... (logout button styles remain unchanged) ... */
+
+  /* Responsive adjustments for header if needed */
+  @media (max-width: 768px) {
+    .app-header {
+      padding: 10px 20px;
+    }
+    .header-nav {
+      display: none;
+    }
+     .header-left {
+      gap: 15px;
+     }
+  }

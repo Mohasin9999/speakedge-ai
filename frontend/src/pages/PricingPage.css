@@ -1,0 +1,180 @@
+/* src/pages/PricingPage.css */
+
+/* --- Use CSS variables from HomePage or define defaults --- */
+:root {
+    --pr-primary-color: var(--hp-primary-color, #8b5cf6); /* SpeakEdge Purple */
+    --pr-primary-dark-color: var(--hp-secondary-color, #7c3aed); /* Darker Purple */
+    /* Define a secondary color if needed, or use a different theme color */
+    --pr-secondary-color: var(--hp-accent-color, #a78bfa); /* Lighter Purple or another theme color */
+    --pr-secondary-dark-color: var(--pr-primary-color); /* Fallback for hover on secondary */
+  
+    --pr-text-light: #ffffff;
+    --pr-text-dark: var(--hp-text-dark, #333);
+    --pr-text-medium: var(--hp-text-medium, #6b7280); /* gray-700 equivalent */
+    --pr-bg-page: #f3f4f6; /* gray-100 */
+    --pr-bg-card: #ffffff;
+    --pr-shadow-color: rgba(0, 0, 0, 0.1);
+    --pr-font-dancing: var(--hp-font-dancing, 'Dancing Script', cursive);
+  }
+  
+
+  
+  .pricing-page {
+    background-color: var(--pr-bg-page);
+    padding: 64px 16px; /* py-16 px-4 */
+    min-height: calc(100vh - 80px); /* Adjust based on header height */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .page-header {
+    max-width: 1200px; /* container */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 48px; /* mb-12 */
+  }
+  
+  .page-title {
+    font-size: 2.2rem; /* Adjusted from text-3xl */
+    font-family: var(--pr-font-dancing);
+    color: var(--pr-primary-color);
+    margin-bottom: 16px; /* mb-4 */
+    font-weight: 700;
+  }
+  
+  .page-subtitle {
+    font-size: 1.125rem; /* text-lg */
+    color: var(--pr-text-medium);
+    max-width: 600px; /* Limit subtitle width */
+    margin: 0 auto; /* Center subtitle */
+  }
+  
+  /* Pricing Cards Section */
+  .pricing-cards-container {
+    display: flex;
+    flex-wrap: wrap; /* flex-wrap */
+    justify-content: center; /* justify-center */
+    gap: 2rem; /* gap-8 */
+    max-width: 1200px; /* Optional: limit container width */
+    margin: 0 auto;
+  }
+  
+  .pricing-card {
+    background-color: var(--pr-bg-card);
+    box-shadow: 0 10px 15px -3px var(--pr-shadow-color), 0 4px 6px -4px var(--pr-shadow-color); /* shadow-lg */
+    border-radius: 0.5rem; /* rounded-lg */
+    overflow: hidden; /* overflow-hidden */
+    width: 100%; /* w-full */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 25px -5px var(--pr-shadow-color), 0 8px 10px -6px var(--pr-shadow-color);
+  }
+  
+  /* Responsive Card Widths */
+  @media (min-width: 640px) { /* sm breakpoint */
+    .pricing-card {
+      width: calc(50% - 1rem); /* Roughly sm:w-1/2 with gap */
+    }
+  }
+  @media (min-width: 1024px) { /* lg breakpoint */
+    .pricing-card {
+       /* Adjust basis for 3 cards, accounting for gap */
+       flex-basis: calc(33.333% - 1.5rem);
+       max-width: calc(33.333% - 1.5rem);
+       /* For the original lg:w-1/4 feel (4 cards), use: */
+       /* flex-basis: calc(25% - 1.5rem); */
+       /* max-width: calc(25% - 1.5rem); */
+    }
+  }
+  
+  
+  .card-header {
+    padding: 24px; /* p-6 */
+    text-align: center;
+    color: var(--pr-text-light);
+  }
+  .card-header.basic,
+  .card-header.enterprise {
+      background-color: var(--pr-primary-color);
+  }
+  .card-header.pro {
+      background-color: var(--pr-secondary-color); /* Use a different color for Pro */
+  }
+  
+  .card-plan-name {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 600; /* font-semibold */
+  }
+  
+  .card-price {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700; /* font-bold */
+    margin-top: 1rem; /* my-4 */
+    margin-bottom: 1rem; /* my-4 */
+  }
+  
+  .card-description {
+    font-size: 0.875rem; /* text-sm */
+  }
+  
+  .card-body {
+    padding: 24px; /* p-6 */
+  }
+  
+  .features-list {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    color: var(--pr-text-medium);
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem; /* Equivalent to space-y-4 on parent */
+  }
+  .feature-item:last-child {
+      margin-bottom: 0;
+  }
+  
+  .feature-icon {
+    width: 1rem; /* w-4 */
+    height: 1rem; /* h-4 */
+    color: var(--pr-primary-color);
+    margin-right: 0.5rem; /* mr-2 */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+  }
+  
+  .choose-plan-button {
+    width: 100%; /* w-full */
+    margin-top: 24px; /* mt-6 */
+    padding: 10px 16px; /* py-2 px-4 */
+    color: var(--pr-text-light);
+    font-weight: 600; /* font-semibold */
+    border-radius: 0.5rem; /* rounded-lg */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Specific button colors */
+  .choose-plan-button.basic,
+  .choose-plan-button.enterprise {
+      background-color: var(--pr-primary-color);
+  }
+  .choose-plan-button.pro {
+       background-color: var(--pr-secondary-color);
+  }
+  
+  /* Hover effects */
+  .choose-plan-button.basic:hover,
+  .choose-plan-button.enterprise:hover {
+       background-color: var(--pr-primary-dark-color);
+  }
+  .choose-plan-button.pro:hover {
+      background-color: var(--pr-secondary-dark-color);
+  }
