@@ -1,0 +1,113 @@
+.
+├── .DS_Store
+├── .gitignore
+├── frontend
+│   ├── .DS_Store
+│   ├── .gitignore
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── public copy
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   └── src
+│       ├── App.css
+│       ├── App.js
+│       ├── App.test.js
+│       ├── assets
+│       │   ├── ai_bubble.png
+│       │   ├── background.jpg
+│       │   ├── background.png
+│       │   ├── facebook_logo.jpg
+│       │   ├── fav1.png
+│       │   ├── fav2.png
+│       │   ├── feature1.jpg
+│       │   ├── feature2.jpg
+│       │   ├── feature3.jpg
+│       │   ├── google_logo.png
+│       │   ├── ielts_bubble.jpeg
+│       │   ├── illustration_woman.png
+│       │   ├── logo.png
+│       │   ├── mic.png
+│       │   ├── Selection.jpg
+│       │   ├── speakedge_logo.jpeg
+│       │   ├── step1.jpg
+│       │   ├── step2.jpg
+│       │   ├── step3.jpg
+│       │   ├── step4.jpg
+│       │   ├── user1.jpeg
+│       │   ├── user2.jpeg
+│       │   ├── user3.jpeg
+│       │   └── waves.png
+│       ├── components
+│       │   ├── axios.js
+│       │   ├── header.css
+│       │   └── header.js
+│       ├── index.css
+│       ├── index.js
+│       ├── logo.svg
+│       ├── pages
+│       │   ├── FeedbackPage.css
+│       │   ├── FeedbackPage.js
+│       │   ├── HomePage.css
+│       │   ├── HomePage.js
+│       │   ├── LoginPage.css
+│       │   ├── LoginPage.js
+│       │   ├── PricingPage.css
+│       │   ├── PricingPage.js
+│       │   ├── RadarChartPage.css
+│       │   ├── RadarChartPage.js
+│       │   ├── scoreData.js
+│       │   ├── SignupPage.css
+│       │   ├── SignupPage.js
+│       │   ├── Speakpage.css
+│       │   └── SpeakPage.js
+│       ├── reportWebVitals.js
+│       └── setupTests.js
+├── README.md
+├── server
+│   ├── .DS_Store
+│   ├── .env
+│   ├── AudioFiles
+│   │   ├── .DS_Store
+│   │   ├── clearAudio
+│   │   │   └── output_audio_20250604_170909.wav
+│   │   ├── recording-1744745588078.wav
+│   │   ├── recording-1744785960590.wav
+│   │   ├── recording-1744842690510.wav
+│   │   ├── recording-1744842971987.wav
+│   │   └── recording-1744871910727.wav
+│   ├── config
+│   │   └── db.js
+│   ├── models
+│   │   └── User.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── routes
+│   │   └── auth.js
+│   ├── server.js
+│   └── wisper
+│       ├── .DS_Store
+│       ├── audio_preprocessor.py
+│       ├── fluency_evaluator.py
+│       ├── grammar_evaluator.py
+│       ├── main.py
+│       ├── pronunciation_evaluator.py
+│       ├── speakedge.py
+│       ├── tempCodeRunnerFile.py
+│       ├── transcriber.py
+│       ├── utils.py
+│       └── vocabulary_evaluator.py
+└── structure.txt
+
+15 directories, 96 files
