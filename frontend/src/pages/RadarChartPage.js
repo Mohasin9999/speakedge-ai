@@ -8,7 +8,7 @@ import {
   ResponsiveContainer
 } from 'recharts';
 import './RadarChartPage.css';
-import Header from '../components/header';
+import Header from '../components/Header';
 
 // 🟦 Import the score data from another file
 import scoreData from './scoreData';

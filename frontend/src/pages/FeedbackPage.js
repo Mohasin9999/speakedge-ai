@@ -12,7 +12,7 @@ import {
 } from 'recharts';
 
 // Import Header Component
-import Header from '../components/header'; // Adjust path if needed
+import Header from '../components/Header'; // Adjust path if needed
 
 // Helper function to get score level and description
 const getScoreFeedback = (score) => {

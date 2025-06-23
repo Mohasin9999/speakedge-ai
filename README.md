@@ -1,98 +1,122 @@
-SpeakEdge
+SpeakEdge: AI-Powered English Speaking Practice
+SpeakEdge is a full-stack web application designed to help users improve their English speaking skills through AI-powered conversational practice. It provides a seamless and interactive platform for learners to practice anytime, anywhere, and receive instant feedback.
 
-SpeakEdge is a web application that provides automated feedback on spoken English, helping users improve their IELTS-style speaking skills. The platform uses OpenAI’s Whisper model for speech-to-text transcription ￼ and analyzes the transcript for pronunciation, vocabulary, grammar, and fluency.
+✨ Features
+AI-Powered Conversations: Engage in real-time, natural conversations with an advanced AI tutor.
 
-Key Features
-• Automatic Transcription: Uses OpenAI Whisper (a state-of-the-art speech recognition model) to convert recorded speech to text ￼.
-• Pronunciation Scoring: Leverages the pronouncing library (an interface to the CMU Pronouncing Dictionary ￼) to analyze and score phonetic pronunciation.
-• Grammar Checking: Employs language_tool_python (a Python API for LanguageTool) to detect grammatical and spelling errors in the transcript ￼.
-• Fluency Analysis: Uses audio processing (torchaudio, a PyTorch audio library ￼) to measure speaking rate, pauses, and overall fluency.
-• Interactive UI: Built with React (a JavaScript library for building user interfaces ￼) to offer a responsive, user-friendly front end.
+Instant Feedback: Receive personalized feedback on pronunciation, grammar, and fluency.
 
-Technologies Used
-• OpenAI Whisper: Speech recognition model for transcription ￼.
-• language_tool_python: Python wrapper for the open-source LanguageTool grammar checker ￼.
-• pronouncing: Python interface to the CMU Pronouncing Dictionary for phonetic analysis ￼.
-• torchaudio: Audio and speech processing library (PyTorch-based) ￼.
-• React: Frontend framework for the user interface ￼.
-• Python 3.9+: Backend language for the speech evaluation logic.
-• Node.js / Express: Backend server (API endpoints, authentication) if applicable.
+Progress Tracking: Monitor your improvement over time with detailed analytics (future feature integration).
 
-Project Structure
-• frontend/ – React application (UI components and pages).
-• server/ – Backend code:
-• server.js (Express server entry point, handles API routes).
-• wisper/ (Python modules for speech evaluation: Whisper model loading, evaluators, etc.).
-• README.md – Project documentation (this file).
+User Authentication: Secure login and signup with JWT-based authentication.
 
-Installation
+Responsive Design: Optimized for a seamless experience across all devices (mobile, tablet, desktop).
 
-Backend (Python) 1. Prerequisites: Install Python 3.9 or newer.
+Dark/Light Theme: Toggle between light and dark modes for personalized viewing comfort.
 
-    2.	Dependencies: In the server/wisper/ directory, install required packages:
+Modern UI: A sleek, intuitive, and visually appealing user interface built with Tailwind CSS.
 
-    [ pip install openai-whisper torchaudio pronouncing language_tool_python librosa soundfile ]
+🚀 Tech Stack
+Frontend:
 
-    (This installs Whisper with its PyTorch dependencies, plus audio libraries.)
+React.js: A declarative, component-based JavaScript library for building user interfaces.
 
-    3.	FFmpeg: Whisper requires the ffmpeg command-line tool to process audio ￼. Install via your package manager (e.g. sudo apt install ffmpeg on Linux).
+Tailwind CSS: A utility-first CSS framework for rapidly building custom designs.
 
-    4.	Run Evaluation Script: Place an audio file in server/AudioFiles/ (or configure paths as needed), then run the main script:
+React Router DOM: For declarative routing within the application.
 
-    [python speakedge.py]
-    This loads the Whisper model, transcribes the latest audio, and prints evaluation results.
+React Icons: A collection of popular SVG icons for React projects.
 
-    Frontend (React)
-    1.	Prerequisites: Install Node.js (v14+) and npm.
-    2.	Setup: In the frontend/ directory, install dependencies:
-    [npm install]
+React Media Recorder: For handling microphone input and audio recording.
 
+Backend (Server):
 
-    3.	Development Server: Start the React app:
-      [npm start]
-    The app will open at http://localhost:3000 in your browser.
+Node.js: JavaScript runtime environment.
 
-    Usage Workflow
-    1.	Record Speech: In the app, click “Start Recording” and speak into the microphone.
-    2.	Submit: Stop recording to upload the audio to the backend.
-    3.	Processing: The backend runs OpenAI Whisper to transcribe the audio ￼. The transcript is then analyzed:
-    •	Pronunciation is evaluated using phonetic data from the CMU dictionary (pronouncing ￼).
-    •	Grammar and vocabulary usage are checked via LanguageTool (language_tool_python) ￼.
-    •	Fluency and vocabulary diversity are assessed (e.g. by measuring pauses or word variety).
-    4.	Feedback: The system returns scores and feedback aligned with IELTS criteria, which are displayed to the user.
+Express.js: Fast, unopinionated, minimalist web framework for Node.js.
 
-Evaluation Criteria
+MongoDB: (Assumed for user/JWT data storage, based on previous conversations).
 
-SpeakEdge aligns its feedback with IELTS speaking assessment criteria ￼ ￼ ￼ ￼:
-• Fluency & Coherence: Ability to speak at a normal pace with logical sentence flow ￼.
-• Lexical Resource: Range and appropriate use of vocabulary ￼.
-• Grammatical Range & Accuracy: Variety and correctness of grammar structures ￼.
-• Pronunciation: Clarity and intelligibility of spoken words ￼.
+Development Tools:
 
-Production Build
-• Frontend: In the frontend/ directory, run:
+npm Workspaces: For managing multiple packages (frontend, server) within a single monorepo.
 
-    [npm run build]
-    This generates an optimized production bundle in build/ ￼. Serve the build/ folder with a static file server or integrate it into an Express server.
+concurrently: To run frontend and backend development servers simultaneously with a single command.
 
-    •	Backend: Deploy the Python evaluation service on a production server (for example, using a WSGI/ASGI server). Ensure all Python dependencies are installed and the evaluation script is properly hosted.
+🔧 Prerequisites
+Before you begin, ensure you have the following installed on your machine:
 
-License
+Node.js & npm (Node Package Manager):
 
-This project is licensed under the MIT License.
+Download and install from the official Node.js website: nodejs.org
 
-Sources:
+npm is included with Node.js.
 
-OpenAI Whisper documentation [https://github.com/openai/whisper#:~:text=Whisper%20is%20a%20general,speech%20translation%2C%20and%20language%20identification];
+To verify installation, open your terminal/command prompt and run:
 
-LanguageTool Python library info [https://pypi.org/project/language-tool-python/#:~:text=Current%20LanguageTool%20version%3A%206.7]￼;
+node -v
+npm -v
 
-Pronouncing library docs [https://pypi.org/project/pronouncing/#:~:text=Pronouncing%20is%20a%20simple%20interface,rhymes%20for%20a%20given%20word]￼;
-TorchAudio GitHub repository [https://github.com/pytorch/audio#:~:text=The%20aim%20of%20torchaudio%20is,be%20seen%20in%20torchaudio%20through]￼;
+Git: For cloning the repository.
 
-React official site [https://legacy.reactjs.org/#:~:text=React] ￼;
+Download and install from the official Git website: git-scm.com
 
-IELTS official scoring criteria [https://ielts.org/take-a-test/test-types/ielts-academic-test/ielts-academic-format-speaking#:~:text=Fluency%20and%20coherence%20assesses%20how,is%20not%20difficult%20to%20follow]
-[https://ielts.org/take-a-test/test-types/ielts-academic-test/ielts-academic-format-speaking#:~:text=Lexical%20resource%20assesses%20the%20range,don%E2%80%99t%20know%20a%20particular%20word]￼ ￼;
+⚙️ Installation
+Follow these steps to get the project up and running on your local machine.
 
-Create React App docs ￼[https://create-react-app.dev/docs/production-build/#:~:text=,enables%20long%20term%20caching%20techniques].
+Clone the repository:
+
+git clone https://github.com/your-username/speakedge-ai.git # Replace with your actual GitHub repo URL
+cd speakedge-ai
+
+Install dependencies for both frontend and server:
+This project uses npm workspaces, allowing you to install all dependencies from the root directory with a single command. concurrently will also be installed as a dev dependency in the root.
+
+npm install
+
+This command will automatically navigate into frontend and server folders and install their respective dependencies, as well as the root-level dependencies.
+
+▶️ Running the Application
+Once all dependencies are installed, you can start both the frontend and backend servers concurrently using a single npm script:
+
+Start the development servers:
+
+npm run dev
+
+This command will:
+
+Start the React development server (frontend).
+
+Start the Express.js server (backend).
+
+Access the application:
+
+Frontend: Open your web browser and navigate to http://localhost:3000
+
+Backend API: The backend server will be running on http://localhost:5001 (or the port configured in your Express app).
+
+📂 Project Structure
+The project follows a monorepo structure with distinct frontend and server directories:
+
+speakedge-ai/
+├── frontend/             # Contains all React.js application files
+│   ├── public/           # Static assets, including favicon.ico and onlylogo_Black.png
+│   ├── src/              # React components, pages, context, assets
+│   ├── package.json      # Frontend dependencies and scripts
+│   └── ...
+├── server/               # Contains all Node.js/Express.js backend files
+│   ├── src/              # Server-side logic, API routes
+│   ├── package.json      # Backend dependencies and scripts
+│   └── ...
+├── package.json          # Root package.json for monorepo configuration (workspaces, concurrently)
+├── README.md             # This file
+└── .gitignore
+
+🎨 Theme Switching
+SpeakEdge supports a light and dark theme. You can toggle between themes by clicking the sun/moon icon in the header navigation. Your theme preference will be saved in your browser's local storage.
+
+🤝 Contributing
+Contributions are welcome! If you have suggestions for improvements, new features, or bug fixes, please open an issue or submit a pull request.
+
+📄 License
+This project is open-source and available under the MIT License. (Create a LICENSE file in your root directory if you want to include one).
