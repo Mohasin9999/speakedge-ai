@@ -1,122 +1,132 @@
-SpeakEdge: AI-Powered English Speaking Practice
-SpeakEdge is a full-stack web application designed to help users improve their English speaking skills through AI-powered conversational practice. It provides a seamless and interactive platform for learners to practice anytime, anywhere, and receive instant feedback.
+# SpeakEdge - AI-Powered Language Learning Platform
+<h1 align="center">
+ <img src="https://github.com/Mohasin9999/speakedge-ai/blob/main/frontend/src/assets/speakedge_logo_white.png">
+</h1>
+SpeakEdge is a modern, AI-driven web application designed to help users improve their English speaking and conversational skills. It provides a suite of tools including real-time feedback, interactive chat scenarios, and progress tracking to make language learning engaging and effective.
 
-✨ Features
-AI-Powered Conversations: Engage in real-time, natural conversations with an advanced AI tutor.
+## ✨ Features
 
-Instant Feedback: Receive personalized feedback on pronunciation, grammar, and fluency.
+-   **Full User Authentication**: Secure login, registration, and password recovery flows.
+-   **Responsive Design & Dark Mode**: A beautiful, modern UI that works seamlessly on all devices and supports both light and dark themes.
+-   **Interactive User Dashboard**: A central hub for users to view their stats, achievements, and recent activity.
+-   **AI Chat Practice**: Engage in realistic chat scenarios with an AI to practice conversational skills in various contexts.
+-   **AI Speaking Practice**: Record your voice on given topics, get a cool audio visualizer, and submit your speech for AI-powered analysis.
+-   **Comprehensive Achievement System**: Over 30 achievements with progress bars to motivate and reward users for their milestones.
+-   **User Settings**: A dedicated page for users to manage their profile information, change passwords, and update preferences.
 
-Progress Tracking: Monitor your improvement over time with detailed analytics (future feature integration).
+---
 
-User Authentication: Secure login and signup with JWT-based authentication.
+## 🛠️ Technology Stack
 
-Responsive Design: Optimized for a seamless experience across all devices (mobile, tablet, desktop).
+This project is built with a modern MERN stack, leveraging powerful AI models for its core functionality.
 
-Dark/Light Theme: Toggle between light and dark modes for personalized viewing comfort.
+#### **Core Stack**
 
-Modern UI: A sleek, intuitive, and visually appealing user interface built with Tailwind CSS.
+-   **Frontend**: React, Tailwind CSS, React Router
+-   **Backend**: Node.js, Express.js
+-   **Database**: MongoDB
 
-🚀 Tech Stack
-Frontend:
+#### **AI & Machine Learning**
 
-React.js: A declarative, component-based JavaScript library for building user interfaces.
+-   **Core Models**: Google Gemini, OpenAI (ChatGPT, Whisper), Meta (Llama,wev2vec2)
+-   **Platform**: Hugging Face for model access and integration.
+-   **Backend Language**: Python is used for the AI/ML microservices.
 
-Tailwind CSS: A utility-first CSS framework for rapidly building custom designs.
+---
 
-React Router DOM: For declarative routing within the application.
+## 📁 File Structure
 
-React Icons: A collection of popular SVG icons for React projects.
+The project is organized into a monorepo structure with a separate `frontend` and `server` directory.
 
-React Media Recorder: For handling microphone input and audio recording.
+```bash
+speakedge/
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── assets/
+│       ├── components/
+│       ├── context/
+│       ├── dashboard/
+│       ├── layouts/
+│       └── pages/
+├── server/
+│   ├── controllers/
+│   ├── models/
+│   └── routes/
+│   └── server.js
+└── package.json
+```
 
-Backend (Server):
+---
 
-Node.js: JavaScript runtime environment.
+## 🚀 Getting Started
 
-Express.js: Fast, unopinionated, minimalist web framework for Node.js.
+Follow these instructions to get a local copy up and running.
 
-MongoDB: (Assumed for user/JWT data storage, based on previous conversations).
+### Prerequisites
 
-Development Tools:
+-   Node.js (v18 or later)
+-   npm or yarn
+-   MongoDB (local instance or a cloud service like MongoDB Atlas)
+-   Python (for AI services)
 
-npm Workspaces: For managing multiple packages (frontend, server) within a single monorepo.
+### Installation & Setup
 
-concurrently: To run frontend and backend development servers simultaneously with a single command.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Mohasin9999/speakedge-ai
+    cd speakedge-ai
+    ```
 
-🔧 Prerequisites
-Before you begin, ensure you have the following installed on your machine:
+2.  **Install root dependencies:**
+    This project uses `concurrently` to run both the frontend and backend servers with a single command.
+    ```bash
+    npm install
+    ```
 
-Node.js & npm (Node Package Manager):
+3.  **Install Frontend Dependencies:**
+    ```bash
+    cd frontend
+    npm install
+    cd ..
+    ```
 
-Download and install from the official Node.js website: nodejs.org
+4.  **Install Backend Dependencies:**
+    ```bash
+    cd server
+    npm install
+    ```
 
-npm is included with Node.js.
+5.  **Set up Environment Variables:**
+    Create a `.env` file in the `server` directory and add the necessary environment variables.
+    ```env
+    # /server/.env
+    MONGO_URI=your_mongodb_connection_string
+    JWT_SECRET=your_jwt_secret_key
+    PORT=5001
+    ```
 
-To verify installation, open your terminal/command prompt and run:
+### Running the Project
 
-node -v
-npm -v
+This project is configured to run both the frontend and backend servers concurrently. From the **root directory** of the project, run one of the following commands:
 
-Git: For cloning the repository.
+-   **For development (recommended):**
+    This command will start both the React development server and the Node.js server.
+    ```bash
+    npm run dev
+    ```
 
-Download and install from the official Git website: git-scm.com
+-   **For production builds:**
+    This command assumes you have already built the frontend.
+    ```bash
+    npm start
+    ```
 
-⚙️ Installation
-Follow these steps to get the project up and running on your local machine.
+Your application should now be running, with the frontend available at `http://localhost:3000` and the server at `http://localhost:5001`.
 
-Clone the repository:
+### Scripts Explained
 
-git clone https://github.com/your-username/speakedge-ai.git # Replace with your actual GitHub repo URL
-cd speakedge-ai
+The `package.json` in the root directory contains the following scripts:
 
-Install dependencies for both frontend and server:
-This project uses npm workspaces, allowing you to install all dependencies from the root directory with a single command. concurrently will also be installed as a dev dependency in the root.
-
-npm install
-
-This command will automatically navigate into frontend and server folders and install their respective dependencies, as well as the root-level dependencies.
-
-▶️ Running the Application
-Once all dependencies are installed, you can start both the frontend and backend servers concurrently using a single npm script:
-
-Start the development servers:
-
-npm run dev
-
-This command will:
-
-Start the React development server (frontend).
-
-Start the Express.js server (backend).
-
-Access the application:
-
-Frontend: Open your web browser and navigate to http://localhost:3000
-
-Backend API: The backend server will be running on http://localhost:5001 (or the port configured in your Express app).
-
-📂 Project Structure
-The project follows a monorepo structure with distinct frontend and server directories:
-
-speakedge-ai/
-├── frontend/             # Contains all React.js application files
-│   ├── public/           # Static assets, including favicon.ico and onlylogo_Black.png
-│   ├── src/              # React components, pages, context, assets
-│   ├── package.json      # Frontend dependencies and scripts
-│   └── ...
-├── server/               # Contains all Node.js/Express.js backend files
-│   ├── src/              # Server-side logic, API routes
-│   ├── package.json      # Backend dependencies and scripts
-│   └── ...
-├── package.json          # Root package.json for monorepo configuration (workspaces, concurrently)
-├── README.md             # This file
-└── .gitignore
-
-🎨 Theme Switching
-SpeakEdge supports a light and dark theme. You can toggle between themes by clicking the sun/moon icon in the header navigation. Your theme preference will be saved in your browser's local storage.
-
-🤝 Contributing
-Contributions are welcome! If you have suggestions for improvements, new features, or bug fixes, please open an issue or submit a pull request.
-
-📄 License
-This project is open-source and available under the MIT License. (Create a LICENSE file in your root directory if you want to include one).
+-   `"start": "concurrently \"cd frontend && npm start\" \"cd server && npm start\""`: Runs the start scripts for both frontend and server.
+-   `"dev": "concurrently \"npm run start --prefix frontend\" \"npm run start --prefix server\""`: A more explicit way to run the development servers in their respective directories.

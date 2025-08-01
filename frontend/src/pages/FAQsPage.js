@@ -1,91 +1,124 @@
-// src/pages/FAQsPage.js
 import React, { useState } from 'react';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FiChevronDown, FiChevronUp, FiHelpCircle } from 'react-icons/fi';
 
-const faqData = [
-  {
-    question: "What is SpeakEdge?",
-    answer: "SpeakEdge is an AI-powered language learning platform designed to help you improve your English speaking skills through real-time, interactive conversations with an AI tutor. We provide instant feedback on pronunciation, grammar, and fluency."
-  },
-  {
-    question: "How does the AI tutor work?",
-    answer: "Our AI tutor uses advanced natural language processing (NLP) and speech recognition to understand your speech and respond dynamically. It simulates real conversations, allowing you to practice various topics and scenarios."
-  },
-  {
-    question: "What kind of feedback will I receive?",
-    answer: "You'll receive instant feedback on your pronunciation, grammatical accuracy, vocabulary usage, and overall fluency. This feedback is designed to be actionable, helping you identify and correct mistakes in real-time."
-  },
-  {
-    question: "Is SpeakEdge suitable for all English proficiency levels?",
-    answer: "Yes! SpeakEdge offers content and conversation topics suitable for learners from beginner to advanced levels. Our AI adapts to your speaking pace and proficiency to provide a comfortable and challenging learning environment."
-  },
-  {
-    question: "Do you offer a free trial?",
-    answer: "We offer a free tier that allows you to experience limited daily AI interactions. You can upgrade to a paid plan anytime for more features and unlimited practice."
-  },
-  {
-    question: "How is my progress tracked?",
-    answer: "Your progress is tracked through detailed analytics dashboards. You can see improvements in various linguistic aspects, review past conversations, and identify areas for further practice."
-  },
-  {
-    question: "What topics can I practice?",
-    answer: "We cover a wide range of topics, from daily conversations and job interviews to travel scenarios and IELTS speaking test simulations. You can choose topics based on your interests and learning goals."
-  },
-  {
-    question: "Can I use SpeakEdge on my mobile device?",
-    answer: "Yes, SpeakEdge is fully responsive and optimized for use on all devices, including smartphones, tablets, and desktop computers."
-  }
-];
+// --- Component Data ---
 
+// FAQ data organized by category
+const faqData = {
+  'General': [
+    {
+      question: "What is SpeakEdge?",
+      answer: "SpeakEdge is an AI-powered language coaching platform designed to help you improve your speaking clarity, confidence, and impact. We provide real-time feedback on your pronunciation, pace, filler words, and more."
+    },
+    {
+      question: "Who is SpeakEdge for?",
+      answer: "SpeakEdge is for anyone looking to enhance their verbal communication skills. This includes students, professionals, public speakers, non-native speakers practicing for fluency, and anyone who wants to speak more effectively."
+    }
+  ],
+  'Billing & Subscriptions': [
+    {
+      question: "Can I try SpeakEdge for free?",
+      answer: "Yes! Our Starter plan is completely free and gives you access to our basic voice analysis tools with a limited number of daily sessions. It's a great way to experience the core features of our platform."
+    },
+    {
+      question: "How do I upgrade my plan?",
+      answer: "You can upgrade your plan at any time from your account dashboard. Simply select the plan that best fits your needs and follow the on-screen instructions. The change will be effective immediately."
+    },
+    {
+        question: "What is your refund policy?",
+        answer: "We offer a 14-day money-back guarantee on all our paid plans. If you're not satisfied with SpeakEdge, please contact our support team within 14 days of your purchase for a full refund."
+    }
+  ],
+  'Technical': [
+    {
+      question: "What equipment do I need?",
+      answer: "All you need is a device with a modern web browser (like Chrome, Firefox, or Safari) and a microphone. Most built-in microphones on laptops and smartphones work perfectly fine."
+    },
+    {
+      question: "Is my data secure?",
+      answer: "Absolutely. We take data privacy and security very seriously. All your practice sessions and personal information are encrypted and stored securely. We never share your data with third parties. Please see our Privacy Policy for more details."
+    }
+  ]
+};
+
+// --- Reusable FAQ Item Component ---
+const FaqItem = ({ faq, isOpen, onClick }) => {
+  return (
+    <div className="border-b border-gray-200 dark:border-gray-700 py-4">
+      <button
+        onClick={onClick}
+        className="w-full flex justify-between items-center text-left text-lg font-semibold text-gray-800 dark:text-gray-200"
+      >
+        <span>{faq.question}</span>
+        {isOpen ? <FiChevronUp className="flex-shrink-0"/> : <FiChevronDown className="flex-shrink-0"/>}
+      </button>
+      {isOpen && (
+        <div className="mt-3 text-gray-600 dark:text-gray-400">
+          <p>{faq.answer}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// --- Main FAQs Page Component ---
 const FAQsPage = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openFaq, setOpenFaq] = useState(null);
 
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
+  const handleToggle = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
   };
 
   return (
-    <div className="bg-gray-50 font-inter min-h-[calc(100vh-80px)] dark:bg-gray-900 transition-colors duration-300">
-      {/* Hero Section for FAQs Page */}
-      <section className="relative py-20 px-4 md:px-8 text-white text-center flex items-center justify-center rounded-b-3xl shadow-lg bg-gradient-to-r from-teal-600 to-cyan-700 dark:from-teal-900 dark:to-cyan-900">
-        <div className="relative z-10 container mx-auto max-w-4xl">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 font-dancing tracking-tight animate-fade-in-up">
-            Frequently Asked Questions
-          </h1>
-          <p className="text-lg sm:text-xl text-teal-100 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            Find quick answers to common questions about SpeakEdge.
+    <div className="bg-white dark:bg-dark-bg text-gray-800 dark:text-gray-200">
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-r from-brand-blue to-green-400 pt-32 pb-24 text-center text-white">
+        <div className="container mx-auto px-6">
+          <h1 className="text-4xl md:text-6xl font-extrabold">Frequently Asked Questions</h1>
+          <p className="mt-4 text-lg text-white/90">
+            Find answers to common questions about our platform, billing, and more.
           </p>
         </div>
-      </section>
+      </div>
 
-      {/* FAQ Accordion Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 max-w-4xl">
-        <div className="bg-white p-6 md:p-8 rounded-xl shadow-xl border border-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:shadow-2xl">
-          {faqData.map((faq, index) => (
-            <div key={index} className="border-b border-gray-200 last:border-b-0 py-4 dark:border-gray-700">
-              <button
-                className="flex justify-between items-center w-full text-left text-xl font-semibold text-gray-800 hover:text-indigo-600 transition-colors duration-200 dark:text-gray-100 dark:hover:text-indigo-400"
-                onClick={() => toggleFAQ(index)}
-                aria-expanded={openIndex === index}
-              >
-                {faq.question}
-                {openIndex === index ? (
-                  <FaChevronUp className="text-indigo-600 transition-transform duration-200 dark:text-indigo-400" />
-                ) : (
-                  <FaChevronDown className="text-gray-500 transition-transform duration-200 dark:text-gray-400" />
-                )}
-              </button>
-              <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  openIndex === index ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0'
-                }`}
-              >
-                <p className="text-gray-600 pt-2 pb-1 dark:text-gray-300">{faq.answer}</p>
+      {/* Main Content Section */}
+      <main className="py-20">
+        <div className="container mx-auto px-6 max-w-4xl">
+          {Object.entries(faqData).map(([category, faqs], categoryIndex) => (
+            <div key={category} className={categoryIndex > 0 ? 'mt-12' : ''}>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{category}</h2>
+              <div className="space-y-2">
+                {faqs.map((faq, faqIndex) => {
+                  const globalIndex = `${categoryIndex}-${faqIndex}`;
+                  return (
+                    <FaqItem
+                      key={globalIndex}
+                      faq={faq}
+                      isOpen={openFaq === globalIndex}
+                      onClick={() => handleToggle(globalIndex)}
+                    />
+                  )
+                })}
               </div>
             </div>
           ))}
+
+          {/* Still have questions? Section */}
+          <div className="mt-20 text-center bg-light-gray dark:bg-dark-surface p-8 rounded-lg">
+            <FiHelpCircle className="mx-auto w-12 h-12 text-brand-blue mb-4"/>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Still have questions?</h3>
+            <p className="mt-2 text-gray-600 dark:text-gray-400">
+              Can't find the answer you're looking for? Don't hesitate to reach out to our support team.
+            </p>
+            <Link to="/contact">
+              <button className="mt-6 bg-brand-blue text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors">
+                Contact Us
+              </button>
+            </Link>
+          </div>
         </div>
-      </section>
+      </main>
     </div>
   );
 };

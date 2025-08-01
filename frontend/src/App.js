@@ -1,60 +1,80 @@
-// src/App.js
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
-// Import the ThemeProvider
 import { ThemeProvider } from './context/ThemeContext';
 
-// Page components
+// Page components (Public/Unauthenticated)
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
-import SpeakPage from './pages/SpeakPage';
-import RadarChartPage from './pages/RadarChartPage';
 import PricingPage from './pages/PricingPage';
-import FeedbackPage from './pages/FeedbackPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AboutUsPage from './pages/AboutUsPage';
 import FAQsPage from './pages/FAQsPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
-// Shared components
+
+// Dashboard components
+import DashboardLayout from './layouts/DashboardLayout';
+import DashboardOverviewPage from './dashboard/DashboardOverviewPage';
+import MyRecordingsPage from './dashboard/MyRecordingsPage';
+import SettingsPage from './dashboard/SettingsPage';
+import DashboardFeedbackPage from './dashboard/FeedbackPage'; 
+import ChatPage from './dashboard/ChatPage';
+import SpeakPage from './dashboard/SpeakPage';
+import AchievementsPage from './dashboard/AchievementsPage';
+// Global components
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 
 function App() {
-  return (
-    // Wrap your entire app content with ThemeProvider
-    <ThemeProvider>
-      {/* Corrected: Removed the extra `</div>>` from line 57 */}
-      <div className="min-h-screen flex flex-col font-inter bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-        {/* Global Header - Fixed at the top */}
-        <Header />
+  const location = useLocation();
+  const isDashboardRoute = location.pathname.startsWith('/dashboard');
 
-        {/* Main content area. flex-grow pushes the footer to the bottom. */}
+  return (
+    <ThemeProvider>
+      {/* The root div uses flex-col to enable the sticky footer layout */}
+      <div className="min-h-screen flex flex-col font-inter bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        
+        {!isDashboardRoute && <Header />}
+
+        {/* MODIFIED: Removed the conditional 'pb-20' class that was causing the gap. */}
         <main className="flex-grow">
           <Routes>
+            {/* Public/Unauthenticated Routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
-            <Route path="/speak" element={<SpeakPage />} />
             <Route path="/pricing" element={<PricingPage />} />
-            <Route path="/feedback" element={<FeedbackPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutUsPage />} />
             <Route path="/faqs" element={<FAQsPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms" element={<TermsPage />} />
-            <Route path="/status" element={<RadarChartPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+
+
+            {/* Authenticated Dashboard Routes (Nested) */}
+            <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route index element={<DashboardOverviewPage />} /> 
+              <Route path="overview" element={<DashboardOverviewPage />} />
+              <Route path="recordings" element={<MyRecordingsPage />} />
+              <Route path="settings" element={<SettingsPage />} />
+              <Route path="speak" element={<SpeakPage />} /> 
+              <Route path="chat" element={<ChatPage />} />
+              <Route path="feedback/:id" element={<DashboardFeedbackPage />} />
+              <Route path="achivements" element={<AchievementsPage />} />
+            </Route>
+
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
 
-        {/* Global Footer */}
-        <Footer />
+        {!isDashboardRoute && <Footer />}
       </div>
     </ThemeProvider>
   );

@@ -1,133 +1,173 @@
-// src/pages/PricingPage.js
 import React from 'react';
-import { FaCheckCircle } from 'react-icons/fa';
+import { FiCheckCircle, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
-const CheckIcon = ({ colorClass = "text-indigo-600", darkColorClass = "dark:text-indigo-400" }) => (
-  <FaCheckCircle className={`w-5 h-5 mr-2 flex-shrink-0 ${colorClass} ${darkColorClass}`} />
-);
+
+const pricingTiers = [
+  {
+    name: 'Starter',
+    price: '$0',
+    frequency: '/month',
+    description: 'Perfect for individuals starting out with voice training.',
+    features: [
+      'Basic voice analysis',
+      '5 practice sessions per day',
+      'Community access',
+      'Email support',
+    ],
+    cta: 'Get Started',
+    featured: false,
+  },
+  {
+    name: 'Pro',
+    price: '$15',
+    frequency: '/month',
+    description: 'For professionals looking to master their communication.',
+    features: [
+      'Advanced voice analysis & feedback',
+      'Unlimited practice sessions',
+      'Personalized learning paths',
+      'Priority email support',
+      'Access to premium content',
+    ],
+    cta: 'Choose Pro',
+    featured: true,
+  },
+  {
+    name: 'Enterprise',
+    price: 'Contact Us',
+    frequency: '',
+    description: 'Tailored solutions for teams and organizations.',
+    features: [
+      'All Pro features',
+      'Team dashboards & reporting',
+      'Dedicated account manager',
+      'Custom integrations',
+      'Onboarding & training',
+    ],
+    cta: 'Contact Sales',
+    featured: false,
+  },
+];
+
+const faqs = [
+    {
+        question: "Can I upgrade or downgrade my plan anytime?",
+        answer: "Yes, you can easily upgrade or downgrade your plan from your account settings. Changes will be prorated for the current billing cycle."
+    },
+    {
+        question: "What happens if I exceed my practice sessions on the Starter plan?",
+        answer: "On the Starter plan, practice sessions reset daily. If you need more, you can upgrade to the Pro plan for unlimited sessions."
+    },
+    {
+        question: "Do you offer discounts for non-profits or students?",
+        answer: "We do! Please contact our support team with your details, and we'll be happy to discuss available discounts."
+    },
+    {
+        question: "What payment methods do you accept?",
+        answer: "We accept all major credit cards, including Visa, Mastercard, and American Express. For Enterprise plans, we also support bank transfers."
+    }
+];
+
+const FaqItem = ({ faq }) => {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    return (
+        <div className="border-b border-gray-200 dark:border-gray-700 py-4">
+            <button 
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full flex justify-between items-center text-left text-lg font-semibold text-gray-800 dark:text-gray-200"
+            >
+                <span>{faq.question}</span>
+                {isOpen ? <FiChevronUp /> : <FiChevronDown />}
+            </button>
+            {isOpen && (
+                <div className="mt-3 text-gray-600 dark:text-gray-400">
+                    <p>{faq.answer}</p>
+                </div>
+            )}
+        </div>
+    )
+}
 
 const PricingPage = () => {
   return (
-    // Removed min-h-[calc(100vh-80px)] and added py-20 for consistent top/bottom padding
-    <div className="bg-gray-50 font-inter py-20 dark:bg-gray-900 transition-colors duration-300"> {/* <--- MODIFIED HERE */}
-      {/* Hero Section for Pricing Page - Modern gradient and title */}
-      <section className="bg-gradient-to-r from-purple-600 to-indigo-700 text-white py-16 px-4 md:px-8 text-center rounded-b-3xl shadow-lg mb-16 dark:from-purple-900 dark:to-indigo-900">
-        <div className="container mx-auto max-w-3xl">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 font-dancing tracking-tight animate-fade-in-up">
-            Simple, Transparent Pricing
+    <div className="bg-white dark:bg-dark-bg">
+      {/* NEW: Gradient Hero Section */}
+      <div className="relative bg-gradient-to-r from-brand-blue to-green-400 pt-24 pb-20 text-center text-white">
+        <div className="container mx-auto px-6">
+          <h1 className="text-4xl md:text-5xl font-extrabold">
+            Find the Perfect Plan
           </h1>
-          <p className="text-lg sm:text-xl text-indigo-100 max-w-xl mx-auto mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            Choose a plan that fits your learning journey. Start mastering English today!
+          <p className="mt-4 text-lg text-white/90">
+            Start for free, then upgrade to unlock powerful features.
           </p>
         </div>
-      </section>
-
-      {/* Pricing Cards Section - Responsive grid layout */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          {/* Basic Plan Card */}
-          <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-2xl">
-            <div className="bg-indigo-500 text-white p-8 text-center rounded-t-xl dark:bg-indigo-700">
-              <h3 className="text-3xl font-extrabold mb-2">Basic Plan</h3>
-              <p className="text-xl font-bold mb-4">
-                <span className="text-5xl md:text-6xl font-bold">$19</span>/month
-              </p>
-              <p className="text-indigo-100 text-sm">Ideal for individuals just getting started.</p>
-            </div>
-            <div className="p-8">
-              <ul className="space-y-4 text-gray-700 mb-8 dark:text-gray-200">
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> 1 AI Interaction per day
-                </li>
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> Access to basic tutorials
-                </li>
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> Email support
-                </li>
-                <li className="flex items-center text-lg opacity-60 line-through dark:text-gray-400">
-                  <FaCheckCircle className="w-5 h-5 mr-2 flex-shrink-0 text-gray-400 dark:text-gray-500" /> Community features
-                </li>
-                <li className="flex items-center text-lg opacity-60 line-through dark:text-gray-400">
-                  <FaCheckCircle className="w-5 h-5 mr-2 flex-shrink-0 text-gray-400 dark:text-gray-500" /> Priority support
-                </li>
-              </ul>
-              <button className="w-full py-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-300 text-lg">
-                Choose Basic
-              </button>
-            </div>
-          </div>
-
-          {/* Pro Plan - Highlighted and more prominent */}
-          <div className="bg-white rounded-xl shadow-2xl border-4 border-indigo-500 overflow-hidden transform scale-[1.03] transition-all duration-300 hover:scale-[1.05] hover:shadow-3xl z-10 dark:bg-gray-800 dark:border-indigo-600 dark:shadow-2xl">
-            <div className="bg-indigo-600 text-white p-8 text-center rounded-t-xl relative dark:bg-indigo-800">
-              <span className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-bl-lg dark:bg-yellow-500 dark:text-yellow-950">Popular</span>
-              <h3 className="text-3xl font-extrabold mb-2">Pro Plan</h3>
-              <p className="text-xl font-bold mb-4">
-                <span className="text-5xl md:text-6xl font-bold">$49</span>/month
-              </p>
-              <p className="text-indigo-100 text-sm">Perfect for professionals who need more advanced features.</p>
-            </div>
-            <div className="p-8">
-              <ul className="space-y-4 text-gray-700 mb-8 dark:text-gray-200">
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> 5 AI Interactions per day
-                </li>
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> Access to premium tutorials
-                </li>
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> Priority email support
-                </li>
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> Community features
-                </li>
-                <li className="flex items-center text-lg opacity-60 line-through dark:text-gray-400">
-                  <FaCheckCircle className="w-5 h-5 mr-2 flex-shrink-0 text-gray-400 dark:text-gray-500" /> Dedicated account manager
-                </li>
-              </ul>
-              <button className="w-full py-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-300 text-lg">
-                Choose Pro
-              </button>
-            </div>
-          </div>
-
-          {/* Enterprise Plan Card */}
-          <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-2xl">
-            <div className="bg-indigo-500 text-white p-8 text-center rounded-t-xl dark:bg-indigo-700">
-              <h3 className="text-3xl font-extrabold mb-2">Enterprise Plan</h3>
-              <p className="text-xl font-bold mb-4">
-                <span className="text-5xl md:text-6xl font-bold">$99</span>/month
-              </p>
-              <p className="text-indigo-100 text-sm">For teams and organizations looking for premium features.</p>
-            </div>
-            <div className="p-8">
-              <ul className="space-y-4 text-gray-700 mb-8 dark:text-gray-200">
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> Unlimited AI Interactions
-                </li>
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> Premium and advanced tutorials
-                </li>
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> 24/7 premium support
-                </li>
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> Team collaboration features
-                </li>
-                <li className="flex items-center text-lg">
-                  <CheckIcon /> Dedicated account manager
-                </li>
-              </ul>
-              <button className="w-full py-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-300 text-lg">
-                Choose Enterprise
-              </button>
-            </div>
-          </div>
-
-        </div>
       </div>
+
+      {/* Main Content Area */}
+      <main className="container mx-auto px-6 py-16">
+        {/* Pricing Tiers Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto -mt-32 relative z-10">
+          {pricingTiers.map((tier) => (
+            <div
+              key={tier.name}
+              className={`bg-white dark:bg-dark-surface border ${
+                tier.featured
+                  ? 'border-brand-blue dark:border-brand-blue'
+                  : 'border-gray-200 dark:border-gray-700'
+              } rounded-2xl p-8 flex flex-col shadow-lg transform hover:scale-105 transition-transform duration-300`}
+            >
+              {tier.featured && (
+                <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+                  <span className="bg-brand-blue text-white text-xs font-semibold px-4 py-1 rounded-full uppercase">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{tier.name}</h2>
+              <p className="mt-2 text-gray-500 dark:text-gray-400">{tier.description}</p>
+              
+              <div className="mt-6">
+                <span className="text-4xl font-extrabold text-gray-900 dark:text-white">{tier.price}</span>
+                <span className="text-lg font-medium text-gray-500 dark:text-gray-400">{tier.frequency}</span>
+              </div>
+
+              <ul className="mt-8 space-y-4 flex-grow">
+                {tier.features.map((feature) => (
+                  <li key={feature} className="flex items-center">
+                    <FiCheckCircle className="text-green-500 mr-3 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-300">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                className={`w-full mt-8 py-3 px-6 rounded-lg font-semibold transition-colors ${
+                  tier.featured
+                    ? 'bg-brand-blue text-white hover:bg-blue-700'
+                    : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600'
+                }`}
+              >
+                {tier.cta}
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* FAQ Section */}
+        <div className="max-w-3xl mx-auto mt-24">
+            <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
+                Frequently Asked Questions
+            </h2>
+            <div className="space-y-2">
+                {faqs.map((faq, index) => (
+                    <FaqItem key={index} faq={faq} />
+                ))}
+            </div>
+        </div>
+
+      </main>
     </div>
   );
 };

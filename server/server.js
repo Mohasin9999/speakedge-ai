@@ -1,25 +1,35 @@
 // server/server.js
-require('dotenv').config(); // Load environment variables
-console.log("✅ .env loaded");
-console.log("🔐 MONGO_URI:", process.env.MONGO_URI ? "Exists" : "Missing");
-console.log("🔐 JWT_SECRET:", process.env.JWT_SECRET ? "Exists" : "Missing");// Load environment variables from .env file
 const express = require('express');
-const cors = require('cors');
-const connectDB = require('./config/db'); // We'll create this next
+const dotenv = require('dotenv');
+const cors = require('cors'); // Import cors
+const connectDB = require('./config/db'); // Import database connection
+const authRoutes = require('./routes/authRoutes'); // Import auth routes
 
-// Connect to Database
+// Load environment variables from .env file
+dotenv.config();
+
+// Connect to the database
 connectDB();
 
+// Initialize Express app
 const app = express();
 
-// Init Middleware
+// Middleware
 app.use(cors()); // Enable CORS for all origins (adjust for production)
-app.use(express.json({ extended: false })); // Allow express to accept JSON body data
+app.use(express.json()); // Body parser for JSON data
 
-// Define Routes
-app.get('/', (req, res) => res.send('API Running')); // Simple test route
-app.use('/api/auth', require('./routes/auth')); // We'll create this route file
+// Basic route for testing server
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
 
-const PORT = process.env.PORT || 5000; // Use port from .env or default to 5000
+// Mount auth routes
+app.use('/api/auth', authRoutes);
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// Define the port from environment variables or default to 5000
+const PORT = process.env.PORT || 5000;
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

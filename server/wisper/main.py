@@ -11,8 +11,8 @@ from utils import get_latest_audio_file
 
 def main():
 
-    raw_audio_dir = "/Users/niloyahmed/499A3.0/speakedge/server/AudioFiles"
-    clean_audio_dir = "/Users/niloyahmed/499A3.0/speakedge/server/AudioFiles/clearAudio"
+    raw_audio_dir = ""
+    clean_audio_dir = ""
 
     preprocessor = AudioPreprocessor(raw_audio_dir, clean_audio_dir)
     audio_path = preprocessor.normalize_and_save()
