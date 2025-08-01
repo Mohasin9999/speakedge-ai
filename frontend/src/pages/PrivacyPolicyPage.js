@@ -1,121 +1,85 @@
-// src/pages/PrivacyPolicyPage.js
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { FiShield, FiDatabase, FiLock, FiUserCheck, FiUsers, FiAlertTriangle, FiMail, FiGitPullRequest } from 'react-icons/fi';
+
+const InfoCard = ({ icon, title, children }) => (
+    <div className="bg-white dark:bg-dark-surface p-6 rounded-lg shadow-md border-l-4 border-brand-blue mb-8 transform hover:scale-[1.02] transition-transform duration-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            {icon}
+            <span className="ml-3">{title}</span>
+        </h2>
+        <div className="prose dark:prose-invert max-w-none">
+            {children}
+        </div>
+    </div>
+);
 
 const PrivacyPolicyPage = () => {
   return (
-    <div className="bg-gray-50 font-inter min-h-[calc(100vh-80px)] dark:bg-gray-900 transition-colors duration-300">
-      {/* Hero Section for Privacy Policy Page */}
-      <section className="relative py-20 px-4 md:px-8 text-white text-center flex items-center justify-center rounded-b-3xl shadow-lg bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-900 dark:to-indigo-900"> {/* Gradient theme */}
-        <div className="relative z-10 container mx-auto max-w-4xl">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 font-dancing tracking-tight animate-fade-in-up">
-            Our Privacy Commitment
+    <div className="bg-light-gray dark:bg-dark-bg text-gray-800 dark:text-gray-200">
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-r from-brand-blue to-green-400 pt-32 pb-24 text-center text-white">
+        <div className="container mx-auto px-6">
+          <FiShield className="mx-auto w-12 h-12 mb-4" />
+          <h1 className="text-4xl md:text-6xl font-extrabold">
+            Privacy Policy
           </h1>
-          <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            Your trust is paramount. Learn how we collect, use, and protect your information with transparency.
+          <p className="mt-4 text-lg text-white/90">
+            Last Updated: August 1, 2025
           </p>
         </div>
-      </section>
+      </div>
 
-      {/* Main Content Sections */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 max-w-5xl">
-        <div className="space-y-12">
+      {/* Main Content Section */}
+      <main className="py-20">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <p className="text-lg text-center text-gray-700 dark:text-gray-300 mb-12">
+            SpeakEdge Inc. ("us", "we", or "our") operates the SpeakEdge website and mobile application (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
+          </p>
+
+          <InfoCard icon={<FiDatabase className="text-brand-blue"/>} title="1. Information Collection and Use">
+            <p>We collect several different types of information for various purposes to provide and improve our Service to you.</p>
+            <h3>Types of Data Collected</h3>
+            <ul>
+                <li><strong>Personal Data:</strong> While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). This may include, but is not limited to: Email address, First name and last name, and Usage Data.</li>
+                <li><strong>Usage Data:</strong> We may also collect information that your browser sends whenever you visit our Service or when you access the Service by or through a mobile device ("Usage Data").</li>
+                <li><strong>Voice Data:</strong> To provide our core speech analysis features, we collect and process recordings of your voice when you use our practice sessions. This data is used solely for the purpose of providing you with feedback on your speech.</li>
+            </ul>
+          </InfoCard>
+
+          <InfoCard icon={<FiGitPullRequest className="text-brand-blue"/>} title="2. How We Use Your Information">
+            <p>SpeakEdge Inc. uses the collected data for various purposes:</p>
+            <ul>
+                <li>To provide and maintain our Service.</li>
+                <li>To notify you about changes to our Service.</li>
+                <li>To provide customer support.</li>
+                <li>To gather analysis or valuable information so that we can improve our Service.</li>
+                <li>To monitor the usage of our Service.</li>
+                <li>To detect, prevent and address technical issues.</li>
+            </ul>
+          </InfoCard>
+
+          <InfoCard icon={<FiLock className="text-brand-blue"/>} title="3. Data Security">
+            <p>The security of your data is important to us but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.</p>
+          </InfoCard>
+
+          <InfoCard icon={<FiUserCheck className="text-brand-blue"/>} title="4. Your Data Protection Rights">
+            <p>You have certain data protection rights. SpeakEdge Inc. aims to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data. If you wish to be informed about what Personal Data we hold about you and if you want it to be removed from our systems, please contact us.</p>
+          </InfoCard>
+
+          <InfoCard icon={<FiUsers className="text-brand-blue"/>} title="5. Service Providers">
+            <p>We may employ third-party companies and individuals to facilitate our Service ("Service Providers"), provide the Service on our behalf, perform Service-related services, or assist us in analyzing how our Service is used. These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
+          </InfoCard>
+
+          <InfoCard icon={<FiAlertTriangle className="text-brand-blue"/>} title="6. Children's Privacy">
+            <p>Our Service does not address anyone under the age of 13 ("Children"). We do not knowingly collect personally identifiable information from anyone under the age of 13. If you are a parent or guardian and you are aware that your Child has provided us with Personal Data, please contact us.</p>
+          </InfoCard>
           
-          {/* Introduction */}
-          <div className="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:shadow-2xl"> {/* Card theme */}
-            <p className="text-xl text-gray-700 leading-relaxed mb-4 dark:text-gray-200"> {/* Text theme */}
-              This Privacy Policy details how SpeakEdge ("we," "us," or "our") handles the information you provide when using our website (www.speakedge.com) and our language learning services. We are committed to safeguarding your privacy and ensuring your data is protected.
-            </p>
-            <p className="text-gray-600 text-sm dark:text-gray-300">Last updated: June 23, 2025</p> {/* Text theme */}
-          </div>
-
-          {/* Section: Information We Collect */}
-          <div className="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:shadow-2xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 font-dancing dark:text-gray-100">1. Information We Collect</h2> {/* Title theme */}
-            <p className="text-lg text-gray-700 leading-relaxed mb-6 dark:text-gray-200"> {/* Text theme */}
-              We collect information that helps us provide and improve your language learning experience. This includes data you provide directly and data collected automatically through your use of our services.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-2xl font-semibold text-indigo-700 mb-3 dark:text-indigo-300">Directly Provided Information</h3> {/* Subtitle theme */}
-                <ul className="list-disc list-inside text-gray-700 space-y-2 dark:text-gray-200"> {/* List theme */}
-                  <li><strong>Account Data:</strong> Names, email addresses, passwords.</li>
-                  <li><strong>Payment Info:</strong> Processed securely by third-party payment gateways (we do not store full credit card details).</li>
-                  <li><strong>Communication:</strong> Content of messages or inquiries you send to us.</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-indigo-700 mb-3 dark:text-indigo-300">Automatically Collected Information</h3>
-                <ul className="list-disc list-inside text-gray-700 space-y-2 dark:text-gray-200">
-                  <li><strong>Voice Recordings:</strong> Audio of your practice sessions for providing feedback and improving AI accuracy.</li>
-                  <li><strong>Usage Data:</strong> How you interact with the AI, features used, time spent on the platform, progress reports.</li>
-                  <li><strong>Device/Browser Info:</strong> IP address, browser type, operating system, device identifiers.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Section: How We Use Your Information */}
-          <div className="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:shadow-2xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 font-dancing dark:text-gray-100">2. How We Use Your Information</h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6 dark:text-gray-200">
-              Your information is used primarily to deliver and enhance the SpeakEdge service, ensuring a personalized and effective learning journey.
-            </p>
-            <ul className="list-decimal list-inside text-gray-700 space-y-2 dark:text-gray-200">
-              <li>To facilitate account creation and login process.</li>
-              <li>To provide, operate, and maintain our Services.</li>
-              <li>To improve, personalize, and expand our Services.</li>
-              <li>To understand and analyze how you use our Services.</li>
-              <li>To develop new products, services, features, and functionality.</li>
-              <li>To communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the Services, and for marketing and promotional purposes.</li>
-            </ul>
-          </div>
-
-          {/* Section: Sharing Your Information */}
-          <div className="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:shadow-2xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 font-dancing dark:text-gray-100">3. Sharing Your Information</h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6 dark:text-gray-200">
-              We value your privacy. We only share information in specific, necessary circumstances, with your consent, or as required by law.
-            </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-2 dark:text-gray-200">
-              <li><strong>Service Providers:</strong> We may share data with third-party vendors (e.g., cloud hosting, analytics, payment processing) who perform services on our behalf, under strict confidentiality agreements.</li>
-              <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or asset sale, your information may be transferred to the acquiring entity.</li>
-              <li><strong>Legal Compliance:</strong> We may disclose information if required by law, subpoena, or other legal process.</li>
-              <li><strong>Protection of Rights:</strong> To protect the rights, property, or safety of SpeakEdge, our users, or the public.</li>
-            </ul>
-          </div>
-
-          {/* Section: Your Privacy Rights */}
-          <div className="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:shadow-2xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 font-dancing dark:text-gray-100">4. Your Privacy Rights</h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6 dark:text-gray-200">
-              Depending on your location, you may have specific rights regarding your personal data. These typically include:
-            </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-2 dark:text-gray-200">
-              <li><strong>Access:</strong> The right to request copies of your personal data.</li>
-              <li><strong>Rectification:</strong> The right to request that we correct any information you believe is inaccurate.</li>
-              <li><strong>Erasure:</strong> The right to request that we erase your personal data under certain conditions.</li>
-              <li><strong>Restriction of Processing:</strong> The right to request that we restrict the processing of your personal data under certain conditions.</li>
-              <li><strong>Data Portability:</strong> The right to request that we transfer the data that we have collected to another organization, or directly to you, under certain conditions.</li>
-              <li><strong>Objection:</strong> The right to object to our processing of your personal data, under certain conditions.</li>
-            </ul>
-            <p className="text-lg text-gray-700 leading-relaxed mt-6 dark:text-gray-200">
-              If you wish to exercise any of these rights, please contact us using the details below.
-            </p>
-          </div>
-
-          {/* Section: Contact Us */}
-          <div className="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-gray-100 text-center dark:bg-gray-800 dark:border-gray-700 dark:shadow-2xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 font-dancing dark:text-gray-100">Contact Us</h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-200">
-              For any questions or concerns regarding this Privacy Policy or your data, please reach out to us:
-            </p>
-            <p className="text-xl font-semibold text-indigo-600 dark:text-indigo-400">
-              Email: <a href="mailto:privacy@speakedge.com" className="hover:underline">privacy@speakedge.com</a>
-            </p>
-          </div>
-
+          <InfoCard icon={<FiMail className="text-brand-blue"/>} title="7. Contact Us">
+            <p>If you have any questions about this Privacy Policy, please <Link to="/contact" className="text-brand-blue hover:underline">contact us</Link>.</p>
+          </InfoCard>
         </div>
-      </section>
+      </main>
     </div>
   );
 };
