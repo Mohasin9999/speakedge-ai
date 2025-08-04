@@ -1,8 +1,7 @@
-// src/pages/SignupPage.js
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-// Assets used for illustration (no direct logo import needed as Header handles it)
+// Assets used for illustration
 import illustrationWoman from '../assets/illustration_woman.png';
 import aiBubble from '../assets/ai_bubble.png';
 import ieltsBubble from '../assets/ielts_bubble.jpeg';
@@ -27,18 +26,18 @@ const SignupPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError(''); // Clear previous errors
+    setError('');
     if (!agreeTerms) {
       setError('Please agree to the terms and privacy policy.');
       return;
     }
-    setLoading(true); // Set loading state
+    setLoading(true); 
 
     const newUser = { name, email, password };
 
     try {
       // API Endpoint for Register
-      const response = await fetch('http://localhost:5001/api/auth/register', {
+      const response = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,32 +45,28 @@ const SignupPage = () => {
         body: JSON.stringify(newUser),
       });
 
-      const data = await response.json(); // Always parse JSON response
+      const data = await response.json();
 
       if (!response.ok) {
-        // If response is not 2xx, throw an error with the backend message
         throw new Error(data.msg || `HTTP error! Status: ${response.status}`);
       }
 
       // Signup successful!
       console.log('Signup successful response:', data);
-      alert('Signup successful! Please log in.'); // Provide user feedback
-      navigate('/login'); // Redirect to login page after successful signup
+      alert('Signup successful! Please log in.');
+      navigate('/login');
 
     } catch (err) {
       console.error('Signup failed:', err);
-      // Display error message to the user
       setError(err.message || 'An unexpected error occurred during signup.');
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false);
     }
   };
   return (
-    // Main container with full height, light background, and Inter font
+
     <div className="min-h-screen bg-gradient-to-br from-brand-blue to-green-400 dark:from-slate-900 dark:via-slate-800 dark:to-dark-bg font-sans flex flex-col antialiased dark:bg-gray-900 transition-colors duration-300">
-      {/* Main Content Area */}
       <main className="flex flex-grow items-center justify-center py-10 px-4 md:px-8 lg:px-12 dark:bg-gray-900 transition-colors duration-300">
-        {/* Illustration Section */}
         <div className="hidden md:flex flex-1 justify-center items-center pr-8 lg:pr-16 max-w-2xl">
           <div className="relative w-96 h-96 bg-purple-50 rounded-2xl flex justify-center items-center shadow-lg transform rotate-3 scale-95 transition-all duration-300 ease-in-out hover:rotate-0 hover:scale-100 dark:bg-gray-800 dark:border dark:border-indigo-700">
             <img src={illustrationWoman} alt="Student illustration" className="relative z-10 w-64 h-auto object-contain" />
