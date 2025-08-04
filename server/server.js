@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db'); 
 const authRoutes = require('./routes/authRoutes'); 
 const reviewRoutes = require('./routes/reviewRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -26,7 +27,9 @@ app.get('/', (req, res) => {
 // Mount auth routes
 app.use('/api/auth', authRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/users', userRoutes);
 
+// Set the port
 
 const PORT = process.env.PORT || 5000;
 
