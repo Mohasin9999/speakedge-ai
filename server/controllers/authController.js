@@ -1,6 +1,6 @@
 // server/controllers/authController.js
 const jwt = require('jsonwebtoken');
-const User = require('../models/User'); // Import the User model
+const User = require('../models/User');
 
 // Helper function to generate JWT token
 const generateToken = (id) => {
@@ -9,9 +9,7 @@ const generateToken = (id) => {
   });
 };
 
-// @desc    Register a new user
-// @route   POST /api/auth/register
-// @access  Public
+
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -53,9 +51,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-// @desc    Authenticate user & get token
-// @route   POST /api/auth/login
-// @access  Public
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
