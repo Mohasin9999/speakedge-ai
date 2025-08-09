@@ -1,0 +1,13 @@
+librosa
+soundfile
+pydub
+torch
+numpy
+transformers
+happytransformer
+Levenshtein
+torchaudio
+whisper
+subprocess
+re
+torchaudio
