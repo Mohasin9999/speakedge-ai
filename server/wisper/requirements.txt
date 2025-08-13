@@ -1,0 +1,28 @@
+# Core ML/DL Framework
+torch
+torchaudio
+torchvision
+
+# For audio processing (loading, resampling, etc.)
+librosa
+pydub
+soundfile
+
+# For transcription (e.g., using Whisper AI models)
+transformers
+datasets
+openai-whisper # <--- ADD THIS LINE
+
+# For phoneme generation (if using espeak-ng backend)
+phonemizer
+
+# For making requests to OpenAI API for feedback generation
+openai
+
+# General utility for scientific computing
+numpy
+
+# For grammar/vocabulary tools
+nltk
+python-Levenshtein
+hf_xet
